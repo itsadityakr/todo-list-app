@@ -1,5 +1,70 @@
-// Selectors
+// Linked List Node
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
 
+// Linked List
+class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    // Add a node to the end of the linked list
+    addNode(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+    }
+
+    // Remove a node from the linked list
+    removeNode(data) {
+        if (!this.head) {
+            return;
+        }
+
+        if (this.head.data === data) {
+            this.head = this.head.next;
+            return;
+        }
+
+        let current = this.head;
+        let prev = null;
+
+        while (current && current.data !== data) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (!current) {
+            return;
+        }
+
+        prev.next = current.next;
+    }
+
+    // Convert the linked list to an array
+    toArray() {
+        const result = [];
+        let current = this.head;
+        while (current) {
+            result.push(current.data);
+            current = current.next;
+        }
+        return result;
+    }
+}
+
+// Selectors
 const toDoInput = document.querySelector('.todo-input');
 const toDoBtn = document.querySelector('.todo-btn');
 const toDoList = document.querySelector('.todo-list');
@@ -7,11 +72,12 @@ const standardTheme = document.querySelector('.standard-theme');
 const lightTheme = document.querySelector('.light-theme');
 const darkerTheme = document.querySelector('.darker-theme');
 
+// Linked list for todos
+let todosList = new LinkedList();
 
 // Event Listeners
-
 toDoBtn.addEventListener('click', addToDo);
-toDoList.addEventListener('click', deletecheck);
+toDoList.addEventListener('click', deleteCheck);
 document.addEventListener("DOMContentLoaded", getTodos);
 standardTheme.addEventListener('click', () => changeTheme('standard'));
 lightTheme.addEventListener('click', () => changeTheme('light'));
@@ -23,178 +89,135 @@ savedTheme === null ?
     changeTheme('standard')
     : changeTheme(localStorage.getItem('savedTheme'));
 
-// Functions;
+// Functions
 function addToDo(event) {
-    // Prevents form from submitting / Prevents form from reloading;
     event.preventDefault();
 
-    // toDo DIV;
-    const toDoDiv = document.createElement("div");
-    toDoDiv.classList.add('todo', `${savedTheme}-todo`);
+    const todoText = toDoInput.value;
+    if (todoText === '') {
+        alert("You must write something!");
+    } else {
+        // Add todo to linked list
+        todosList.addNode(todoText);
 
-    // Create LI
-    const newToDo = document.createElement('li');
-    if (toDoInput.value === '') {
-            alert("You must write something!");
-        } 
-    else {
-        // newToDo.innerText = "hey";
-        newToDo.innerText = toDoInput.value;
-        newToDo.classList.add('todo-item');
-        toDoDiv.appendChild(newToDo);
+        // Adding to local storage
+        savelocal(todoText);
 
-        // Adding to local storage;
-        savelocal(toDoInput.value);
-
-        // check btn;
-        const checked = document.createElement('button');
-        checked.innerHTML = '<i class="fas fa-check"></i>';
-        checked.classList.add('check-btn', `${savedTheme}-button`);
-        toDoDiv.appendChild(checked);
-        // delete btn;
-        const deleted = document.createElement('button');
-        deleted.innerHTML = '<i class="fas fa-trash"></i>';
-        deleted.classList.add('delete-btn', `${savedTheme}-button`);
-        toDoDiv.appendChild(deleted);
-
-        // Append to list;
-        toDoList.appendChild(toDoDiv);
-
-        // CLearing the input;
-        toDoInput.value = '';
+        // Render todos
+        renderTodos();
     }
+}
 
-}   
-
-
-function deletecheck(event){
-
-    // console.log(event.target);
+function deleteCheck(event) {
     const item = event.target;
 
-    // delete
-    if(item.classList[0] === 'delete-btn')
-    {
-        // item.parentElement.remove();
-        // animation
+    if (item.classList[0] === 'delete-btn') {
         item.parentElement.classList.add("fall");
 
-        //removing local todos;
+        // Removing local todos
         removeLocalTodos(item.parentElement);
 
-        item.parentElement.addEventListener('transitionend', function(){
+        item.parentElement.addEventListener('transitionend', function () {
             item.parentElement.remove();
-        })
+        });
     }
 
-    // check
-    if(item.classList[0] === 'check-btn')
-    {
+    if (item.classList[0] === 'check-btn') {
         item.parentElement.classList.toggle("completed");
     }
-
-
 }
 
+function renderTodos() {
+    // Clear existing todos
+    toDoList.innerHTML = '';
 
-// Saving to local storage:
-function savelocal(todo){
-    //Check: if item/s are there;
-    let todos;
-    if(localStorage.getItem('todos') === null) {
-        todos = [];
-    }
-    else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-
-    todos.push(todo);
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
-
-
-
-function getTodos() {
-    //Check: if item/s are there;
-    let todos;
-    if(localStorage.getItem('todos') === null) {
-        todos = [];
-    }
-    else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-
-    todos.forEach(function(todo) {
-        // toDo DIV;
-        const toDoDiv = document.createElement("div");
-        toDoDiv.classList.add("todo", `${savedTheme}-todo`);
-
-        // Create LI
-        const newToDo = document.createElement('li');
-        
-        newToDo.innerText = todo;
-        newToDo.classList.add('todo-item');
-        toDoDiv.appendChild(newToDo);
-
-        // check btn;
-        const checked = document.createElement('button');
-        checked.innerHTML = '<i class="fas fa-check"></i>';
-        checked.classList.add("check-btn", `${savedTheme}-button`);
-        toDoDiv.appendChild(checked);
-        // delete btn;
-        const deleted = document.createElement('button');
-        deleted.innerHTML = '<i class="fas fa-trash"></i>';
-        deleted.classList.add("delete-btn", `${savedTheme}-button`);
-        toDoDiv.appendChild(deleted);
-
-        // Append to list;
+    // Render todos from linked list
+    todosList.toArray().forEach(todo => {
+        const toDoDiv = createToDoElement(todo);
         toDoList.appendChild(toDoDiv);
     });
 }
 
+function createToDoElement(todoText) {
+    const toDoDiv = document.createElement("div");
+    toDoDiv.classList.add("todo", `${savedTheme}-todo`);
 
-function removeLocalTodos(todo){
-    //Check: if item/s are there;
-    let todos;
-    if(localStorage.getItem('todos') === null) {
-        todos = [];
-    }
-    else {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
+    const newToDo = document.createElement('li');
+    newToDo.innerText = todoText;
+    newToDo.classList.add('todo-item');
+    toDoDiv.appendChild(newToDo);
 
-    const todoIndex =  todos.indexOf(todo.children[0].innerText);
-    // console.log(todoIndex);
-    todos.splice(todoIndex, 1);
-    // console.log(todos);
+    const checked = document.createElement('button');
+    checked.innerHTML = '<i class="fas fa-check"></i>';
+    checked.classList.add('check-btn', `${savedTheme}-button`);
+    toDoDiv.appendChild(checked);
+
+    const deleted = document.createElement('button');
+    deleted.innerHTML = '<i class="fas fa-trash"></i>';
+    deleted.classList.add('delete-btn', `${savedTheme}-button`);
+    toDoDiv.appendChild(deleted);
+
+    return toDoDiv;
+}
+
+function savelocal(todo) {
+    let todos = todosList.toArray();
+    todos.push(todo);
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-// Change theme function:
+function getTodos() {
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    
+    // Clear the linked list
+    todosList = new LinkedList();
+
+    // Add todos to linked list
+    todos.forEach(todo => {
+        todosList.addNode(todo);
+    });
+
+    // Render todos
+    renderTodos();
+}
+
+function removeLocalTodos(todoElement) {
+    let todos = todosList.toArray();
+    const todoText = todoElement.children[0].innerText;
+    const todoIndex = todos.indexOf(todoText);
+    todos.splice(todoIndex, 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 function changeTheme(color) {
     localStorage.setItem('savedTheme', color);
     savedTheme = localStorage.getItem('savedTheme');
 
     document.body.className = color;
-    // Change blinking cursor for darker theme:
-    color === 'darker' ? 
-        document.getElementById('title').classList.add('darker-title')
-        : document.getElementById('title').classList.remove('darker-title');
+
+    // Change blinking cursor for darker theme
+    if (color === 'darker') {
+        document.getElementById('title').classList.add('darker-title');
+    } else {
+        document.getElementById('title').classList.remove('darker-title');
+    }
 
     document.querySelector('input').className = `${color}-input`;
-    // Change todo color without changing their status (completed or not):
+
+    // Change todo color without changing their status (completed or not)
     document.querySelectorAll('.todo').forEach(todo => {
-        Array.from(todo.classList).some(item => item === 'completed') ? 
-            todo.className = `todo ${color}-todo completed`
-            : todo.className = `todo ${color}-todo`;
+        Array.from(todo.classList).some(item => item === 'completed') ?
+            todo.className = `todo ${color}-todo completed` :
+            todo.className = `todo ${color}-todo`;
     });
-    // Change buttons color according to their type (todo, check or delete):
+
+    // Change buttons color according to their type (todo, check or delete)
     document.querySelectorAll('button').forEach(button => {
         Array.from(button.classList).some(item => {
             if (item === 'check-btn') {
-              button.className = `check-btn ${color}-button`;  
+                button.className = `check-btn ${color}-button`;
             } else if (item === 'delete-btn') {
-                button.className = `delete-btn ${color}-button`; 
+                button.className = `delete-btn ${color}-button`;
             } else if (item === 'todo-btn') {
                 button.className = `todo-btn ${color}-button`;
             }

@@ -64,7 +64,7 @@ body {
     border-radius: 100%;
     height: 35px;
     margin: 0 8px;
-    transition: tranform 150ms ease-in-out, box-shadow 200ms ease-in-out;
+    transition: transform 150ms ease-in-out, box-shadow 200ms ease-in-out;
     width: 35px;
 }
 
