@@ -1,69 +1,3 @@
-// Linked List Node
-class Node {
-    constructor(data) {
-        this.data = data;
-        this.next = null;
-    }
-}
-
-// Linked List
-class LinkedList {
-    constructor() {
-        this.head = null;
-    }
-
-    // Add a node to the end of the linked list
-    addNode(data) {
-        const newNode = new Node(data);
-        if (!this.head) {
-            this.head = newNode;
-        } else {
-            let current = this.head;
-            while (current.next) {
-                current = current.next;
-            }
-            current.next = newNode;
-        }
-    }
-
-    // Remove a node from the linked list
-    removeNode(data) {
-        if (!this.head) {
-            return;
-        }
-
-        if (this.head.data === data) {
-            this.head = this.head.next;
-            return;
-        }
-
-        let current = this.head;
-        let prev = null;
-
-        while (current && current.data !== data) {
-            prev = current;
-            current = current.next;
-        }
-
-        if (!current) {
-            return;
-        }
-
-        prev.next = current.next;
-    }
-
-    // Convert the linked list to an array
-    toArray() {
-        const result = [];
-        let current = this.head;
-        while (current) {
-            result.push(current.data);
-            current = current.next;
-        }
-        return result;
-    }
-}
-
 // Selectors
 const toDoInput = document.querySelector('.todo-input');
 const toDoBtn = document.querySelector('.todo-btn');
@@ -72,8 +6,8 @@ const standardTheme = document.querySelector('.standard-theme');
 const lightTheme = document.querySelector('.light-theme');
 const darkerTheme = document.querySelector('.darker-theme');
 
-// Linked list for todos
-let todosList = new LinkedList();
+// Array for todos
+let todosList = [];
 
 // Event Listeners
 toDoBtn.addEventListener('click', addToDo);
@@ -97,8 +31,11 @@ function addToDo(event) {
     if (todoText === '') {
         alert("You must write something!");
     } else {
-        // Add todo to linked list with completed status set to false
-        todosList.addNode({ text: todoText, completed: false });
+        // Get current date and time
+        const timestamp = new Date().toLocaleString();
+
+        // Add todo to array with completed status set to false along with timestamp
+        todosList.push({ text: todoText, completed: false, timestamp: timestamp });
 
         // Adding to local storage
         savelocal();
@@ -111,26 +48,27 @@ function addToDo(event) {
     }
 }
 
-
 function deleteCheck(event) {
     const item = event.target;
 
     if (item.classList[0] === 'delete-btn') {
-        item.parentElement.classList.add("fall");
+        const todoIndex = item.parentElement.getAttribute('data-index');
+        todosList.splice(todoIndex, 1);
 
         // Removing local todos
-        removeLocalTodos(item.parentElement);
+        removeLocalTodos();
 
-        item.parentElement.addEventListener('transitionend', function () {
-            item.parentElement.remove();
-        });
+        renderTodos();
     }
 
     if (item.classList[0] === 'check-btn') {
-        item.parentElement.classList.toggle("completed");
+        const todoIndex = item.parentElement.getAttribute('data-index');
+        todosList[todoIndex].completed = !todosList[todoIndex].completed;
 
-        // Update completed status in linked list
-        updateCompletedStatus(item.parentElement);
+        // Update completed status in local storage
+        savelocal();
+
+        renderTodos();
     }
 }
 
@@ -138,9 +76,9 @@ function renderTodos() {
     // Clear existing todos
     toDoList.innerHTML = '';
 
-    // Render todos from linked list
-    todosList.toArray().forEach(todo => {
-        const toDoDiv = createToDoElement(todo);
+    // Render todos from array
+    todosList.forEach((todo, index) => {
+        const toDoDiv = createToDoElement(todo, index);
 
         // Check if the todo is completed and apply the appropriate class
         if (todo.completed) {
@@ -151,14 +89,23 @@ function renderTodos() {
     });
 }
 
-function createToDoElement(todoObject) {
+function createToDoElement(todoObject, index) {
     const toDoDiv = document.createElement("div");
     toDoDiv.classList.add("todo", `${savedTheme}-todo`);
+    toDoDiv.setAttribute('data-index', index);
 
     const newToDo = document.createElement('li');
-    newToDo.innerText = todoObject.text;
+    newToDo.innerText = `${todoObject.text}`; // Displaying todo text
     newToDo.classList.add('todo-item');
     toDoDiv.appendChild(newToDo);
+
+    const timestampPara = document.createElement('p');
+    const timestamp = new Date(todoObject.timestamp); // Convert timestamp string to Date object
+    const options = { day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: true };
+    const formattedTimestamp = timestamp.toLocaleDateString('en-US', options);
+    timestampPara.innerText = `Added: ${formattedTimestamp}`; // Displaying formatted timestamp
+    timestampPara.classList.add('todo-timestamp');
+    toDoDiv.appendChild(timestampPara);
 
     const checked = document.createElement('button');
     checked.innerHTML = '<i class="fas fa-check"></i>';
@@ -170,48 +117,27 @@ function createToDoElement(todoObject) {
     deleted.classList.add('delete-btn', `${savedTheme}-button`);
     toDoDiv.appendChild(deleted);
 
-    // Add completed class if the todo is completed
-    if (todoObject.completed) {
-        toDoDiv.classList.add("completed");
-    }
-
     return toDoDiv;
 }
 
+
+
 function savelocal() {
-    let todos = todosList.toArray();
-    localStorage.setItem('todos', JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(todosList));
 }
 
 function getTodos() {
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-    // Clear the linked list
-    todosList = new LinkedList();
-
-    // Add todos to linked list
-    todos.forEach(todo => {
-        todosList.addNode(todo);
-    });
+    // Load todos from local storage
+    todosList = todos;
 
     // Render todos
     renderTodos();
 }
 
-function removeLocalTodos(todoElement) {
-    let todos = todosList.toArray();
-    const todoText = todoElement.children[0].innerText;
-    const todoIndex = todos.findIndex(todo => todo.text === todoText);
-    todos.splice(todoIndex, 1);
-    localStorage.setItem('todos', JSON.stringify(todos));
-}
-
-function updateCompletedStatus(todoElement) {
-    let todos = todosList.toArray();
-    const todoText = todoElement.children[0].innerText;
-    const todoIndex = todos.findIndex(todo => todo.text === todoText);
-    todos[todoIndex].completed = !todos[todoIndex].completed;
-    localStorage.setItem('todos', JSON.stringify(todos));
+function removeLocalTodos() {
+    localStorage.setItem('todos', JSON.stringify(todosList));
 }
 
 function changeTheme(color) {

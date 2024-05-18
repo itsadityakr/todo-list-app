@@ -1,0 +1,43 @@
+.mic{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 226, 223);
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+}
+.mic-svg { 
+    fill: black;
+    transition: transform 0.3s;
+}
+.mic-svg:hover { 
+    fill: red;
+    transform: scale(1.1)
+}
+.scrollable { 
+    scroll-behavior: smooth;
+    max-height: 38vh;
+    width: 50vw;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.scrollable::-webkit-scrollbar { 
+    width: 0;
+    height: 0;
+    display: none;
+}
+.scrollable::-webkit-scrollbar-track { 
+    background-color: transparent;
+}
+#p-date{ 
+    margin-bottom: 10px;
+}
+#dateTime { 
+    text-align: center;
+}
+.todo-timestamp { 
+    color: #888;
+    font-size: 12px;
+    margin-right: 5px;
+}
