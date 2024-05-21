@@ -1,11 +1,13 @@
+/* Reset margin and padding for all elements, and set box-sizing to border-box */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Set styles for the body element */
 body {
-    /* #363532, rgb(88, 111, 112) */
+    /* Center the body content and set its font, height, and padding */
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -14,12 +16,14 @@ body {
     padding-top: 3%;
 }
 
+/* Set common styles for #header, #form, and #datetime */
 #header, #form, #datetime {
     margin: 0 1rem;
     min-height: 10vh;
     width: 100%;
 }
 
+/* Set styles for the header section */
 #header {
     align-items: center;
     display: flex;
@@ -30,7 +34,7 @@ body {
     width: 100%;
 }
 
-/* Theme buttons div */
+/* Styles for the container of theme buttons */
 .flexrow-container {
     align-items: center;
     align-self: flex-end;
@@ -39,6 +43,7 @@ body {
     margin-right: 3%;
 }
 
+/* Styles for individual theme buttons */
 .theme-selector {
     border: 1px solid #d1dae3;
     border-radius: 100%;
@@ -48,51 +53,55 @@ body {
     width: 35px;
 }
 
+/* Hover effect for theme buttons */
 .theme-selector:hover { 
     box-shadow: white 0 0 8px;
     cursor: pointer;
 }
 
+/* Active effect for theme buttons */
 .theme-selector:active {
     transform: scale(0.95);
 }
 
-/* Animation */
+/* Animation styles for the title */
 #title {
     border-right: solid 3px rgba(0, 0, 0, 0.75);
-    white-space: pre;
     overflow: hidden;     
     letter-spacing: 0.20rem;
+    margin-left: 5px;
     margin-top: 50px;
     margin-bottom: 5px;
     max-width: 480px;
-}
-
-  /* Animation */
-#title {
     animation: animated-text 2s steps(11,end) 0.5s 1 normal both,
         animated-cursor 750ms steps(11,end) infinite;
 }
 
+/* Darker title animation for a specific state */
 #title.darker-title {
+    
     animation: animated-text 2s steps(11,end) 0.5s 1 normal both, darker-animated-cursor 750ms steps(11,end) infinite;
 }
 
-@keyframes animated-text{
-    from{width: 0%;}
-    to{width: 480px;}
+/* Keyframes for the animated text effect */
+@keyframes animated-text {
+    from { width: 0%; }
+    to { width: 400px; }
 }
 
-@keyframes animated-cursor{
-    from{border-right-color: rgba(0, 0, 0, 0.75);}
-    to{border-right-color: transparent;}
+/* Keyframes for the cursor animation */
+@keyframes animated-cursor {
+    from { border-right-color: rgba(0, 0, 0, 0.75); }
+    to { border-right-color: transparent; }
 }
 
+/* Keyframes for a darker cursor animation */
 @keyframes darker-animated-cursor {
-    from{border-right-color: #01394c;}
-    to{border-right-color: transparent;}
+    from { border-right-color: #01394c; }
+    to { border-right-color: transparent; }
 }
 
+/* Styles for the form */
 form {
     display: flex;
     font-size: 1.7rem;
@@ -102,12 +111,12 @@ form {
     width: 100%;
 }
 
+/* Styles for form input elements */
 form input {
     padding: 10px;
     font-size: 17px;
     border: none;
     outline: none;
-    /* border-radius: 15; */
     border-top-left-radius: 17px;
     border-bottom-left-radius: 17px;
     max-width: 500px;
@@ -115,20 +124,24 @@ form input {
     width: 100%;
 }
 
+/* Hover effect for form input elements */
 form input:hover {
     cursor: text;
 }
 
+/* General styles for buttons */
 button {
     border: none;
     outline: none; 
     transition: box-shadow 200ms ease, background-color 200ms ease-in-out;
 }
 
+/* Hover effect for buttons */
 button:hover {
     cursor: pointer;
 }
 
+/* Styles for the form button */
 form button {
     padding: 10px;
     font-size: 17px;
@@ -137,6 +150,7 @@ form button {
     min-width: 100px;
 }
 
+/* Container for the unordered list of to-dos */
 #myUnOrdList {
     display: flex;
     justify-content: center;
@@ -144,17 +158,15 @@ form button {
     max-width: 1200px;
 }
 
+/* Styles for the unordered list of to-dos */
 .todo-list {
     min-width: 25%;
-
-    /* To remove the bullets of unordered list */
-    list-style: none;
+    list-style: none; /* Remove bullets */
 }
 
+/* Styles for individual to-do items */
 .todo {
     margin: 1rem;
-    /* background: rgb(247, 226, 223); */
-    /* color: black; */
     font-size: 19px;
     display: flex;
     justify-content: space-between;
@@ -164,18 +176,16 @@ form button {
     transition: background-color 200ms ease-in-out;
 }
 
-.todo li{
+/* Styles for list items within to-do items */
+.todo li {
     padding: 7px;
-    /* word-wrap: break-word; */
-    /* flex-wrap: wrap; */
     font-size: 20px;
-    flex: 1; /* To push the trash and the check button to the right */
+    flex: 1; /* Pushes buttons to the right */
     border-radius: 30px;
-
-    /* wraps the links */
-    overflow-wrap: anywhere;
+    overflow-wrap: anywhere; /* Wraps text */
 }
 
+/* Styles for check and delete buttons */
 .check-btn, .delete-btn {
     font-size: 19px;
     cursor: pointer;
@@ -185,28 +195,31 @@ form button {
     margin: 0 5px;
 }
 
+/* Additional styles for the to-do item */
 .todo-item {
     padding: 0rem 0.5rem;
 }
 
+/* Prevent pointer events for icons */
 .fa-trash, .fa-check { 
     pointer-events: none;
 }
 
-
+/* Styles for completed to-do items */
 .completed {
     transition: 0.2s;
     text-decoration: line-through;
     opacity: 0.5;
 }
 
+/* Animation for to-do items falling out */
 .fall {
     transition: 0.5s;
     transform: translateY(45rem) rotateZ(45deg);
     opacity: 0;
 }
 
-/* Responsive design */
+/* Responsive design for screens smaller than 1000px */
 @media only screen and (max-width: 1000px) {
     .flexrow-container {
         align-self: unset;
@@ -214,6 +227,7 @@ form button {
     }
 }
 
+/* Responsive design for screens smaller than 800px */
 @media only screen and (max-width: 800px) {
     #header {
         font-size: 2rem;
@@ -229,6 +243,7 @@ form button {
     }
 }
 
+/* Responsive design for screens smaller than 400px */
 @media only screen and (max-width: 400px) {
     #header {
         font-size: 1.5rem;
@@ -242,6 +257,7 @@ form button {
     }
 }
 
+/* Additional responsive design for screens smaller than 400px */
 @media only screen and (max-width: 400px) {
     form {
         align-items: center;
@@ -257,6 +273,7 @@ form button {
         margin-top: 15px;
         width: 50%;
     }
+
     form > button.light-button {
         box-shadow: 0 0 5px lightgray;
     }

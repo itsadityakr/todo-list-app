@@ -1,11 +1,17 @@
 .light {
-    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+    background-image: url('light.jpg'); /* Use your image URL here */
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     color: #1a150e;
     transition: 0.3s linear;
 }
 
 .light-theme {
-    background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+    background-image: url('light.jpg'); /* Use the same image URL here */
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
 form input.light-input {

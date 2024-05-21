@@ -5,6 +5,7 @@ const toDoList = document.querySelector('.todo-list');
 const standardTheme = document.querySelector('.standard-theme');
 const lightTheme = document.querySelector('.light-theme');
 const darkerTheme = document.querySelector('.darker-theme');
+const sunTheme = document.querySelector('.sun-theme');
 
 // Array for todos
 let todosList = [];
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", getTodos);
 standardTheme.addEventListener('click', () => changeTheme('standard'));
 lightTheme.addEventListener('click', () => changeTheme('light'));
 darkerTheme.addEventListener('click', () => changeTheme('darker'));
+sunTheme.addEventListener('click', () => changeTheme('sunny'));
 
 // Check if one theme has been set previously and apply it (or std theme if not found):
 let savedTheme = localStorage.getItem('savedTheme');
@@ -175,3 +177,27 @@ function changeTheme(color) {
         });
     });
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const sunButton = document.querySelector('.terms-info');
+    const popup = document.getElementById('popup');
+    const activeButton = document.querySelector('.active-btn');
+
+    // Check if sun button is already active in localStorage
+    const isSunActive = localStorage.getItem('sunActive') === 'true';
+
+    if (isSunActive) {
+        popup.style.display = 'block';
+    }
+
+    sunButton.addEventListener('click', function() {
+        popup.style.display = 'block';
+        // Set sunActive to true in localStorage
+        localStorage.setItem('sunActive', 'true');
+    });
+
+    activeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+        // Remove sunActive from localStorage
+        localStorage.removeItem('sunActive');
+    });
+});
