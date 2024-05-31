@@ -6,76 +6,78 @@ micBtn.addEventListener('click', toggleSpeechRecognition);
 
 function toggleSpeechRecognition() {
     if (isListening) {
-        stopSpeechRecognition(); // Stop speech recognition when button is clicked
+        stopSpeechRecognition();
     } else {
         startSpeechRecognition();
     }
     isListening = !isListening;
-
-    // Toggle the active class to change button color
     micBtn.classList.toggle('active', isListening);
 }
 
 function stopSpeechRecognition() {
     if (recognition) {
-        recognition.stop(); // Stop speech recognition
+        recognition.stop();
+        recognition.onend = null; // Remove the onend event to prevent restart
     }
 }
 
 function startSpeechRecognition() {
     if (recognition) {
-        recognition.stop(); // Stop previous instance if any
+        recognition.stop();
     }
 
     recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
-    recognition.continuous = false; // Set continuous to false to process only one result
+    recognition.continuous = false;
     recognition.interimResults = false;
 
     recognition.onresult = function(event) {
         const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
 
-        if (transcript.includes('sunlight remove recent task')) {
+        if (transcript.includes('remove recent task')) {
             removeMostRecentToDo();
-        } else if (transcript.startsWith('sunlight create a new task')) {
-            const taskText = transcript.replace('sunlight create a new task', '').trim();
+        } else if (transcript.startsWith('create a task')) {
+            const taskText = transcript.replace('create a task', '').trim();
             if (taskText) {
                 toDoInput.value = taskText;
                 setTimeout(() => {
                     addToDoFromSpeech(taskText);
                 }, 3000);
-            }
-            else {
+            } else {
                 alert("You must specify a task after Command: 'sunlight create new task'!");
             }
-        } else if (transcript.includes('hey sunlight turn off the mic')) {
-            stopSpeechRecognition(); // Stop speech recognition when user says "turn off the mic"
-            toggleSpeechRecognition(); // Toggle the button to visually indicate that the mic is off
+        } else if (transcript.includes('turn off the mic')) {
+            stopSpeechRecognition();
+            isListening = false;
+            micBtn.classList.remove('active');
         }
 
-        // Restart recognition after processing the result
-        restartRecognition();
+        // Only restart recognition if still listening
+        if (isListening) {
+            restartRecognition();
+        }
     };
 
     recognition.onend = function() {
         if (isListening) {
-            restartRecognition(); // Automatically restart recognition when it ends
+            restartRecognition();
         }
     };
 
     recognition.onerror = function(event) {
         console.error('Speech recognition error:', event.error);
         if (isListening) {
-            restartRecognition(); // Restart recognition on error
+            restartRecognition();
         }
     };
 
-    recognition.start(); // Initial start of recognition
+    recognition.start();
 }
 
 function restartRecognition() {
-    recognition.stop();
-    recognition.start();
+    if (recognition) {
+        recognition.start();
+    }
 }
 
 function addToDoFromSpeech(todoText) {
@@ -83,7 +85,7 @@ function addToDoFromSpeech(todoText) {
     todosList.push({ text: todoText, completed: false, timestamp: timestamp });
     savelocal();
     renderTodos();
-    toDoInput.value = ''; // Clear the input after adding the task
+    toDoInput.value = '';
 }
 
 function removeMostRecentToDo() {

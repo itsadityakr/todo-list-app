@@ -70,9 +70,8 @@ body {
     overflow: hidden;     
     letter-spacing: 0.20rem;
     margin-left: 5px;
-    margin-top: 50px;
     margin-bottom: 5px;
-    max-width: 480px;
+    max-width: 360px;
     animation: animated-text 2s steps(11,end) 0.5s 1 normal both,
         animated-cursor 750ms steps(11,end) infinite;
 }
