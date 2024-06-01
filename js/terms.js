@@ -22,4 +22,17 @@ tab_lists.forEach(function(list){
     })
     
   })
-})
+});
+
+document.getElementById("agreeButton").addEventListener("click", function() {
+  window.location.href = "../pages/selection.html";
+});
+function closeTab() {
+  // Attempt to close the current tab
+  window.close();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const declineButton = document.querySelector(".decline");
+  declineButton.addEventListener("click", closeTab);
+});

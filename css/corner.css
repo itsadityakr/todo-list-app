@@ -1,0 +1,117 @@
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-25deg);
+    }
+
+    40% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(-25deg);
+    }
+
+    80% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
+
+.mic{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+}
+
+.mic-btn.active .mic-svg {
+    fill: red;
+}
+
+.mic-svg:hover { 
+    fill: rgb(255, 0, 0);
+    transform: scale(1.1)
+}
+.scrollable { 
+    scroll-behavior: smooth;
+    max-height: 38vh;
+    width: 50vw;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.scrollable::-webkit-scrollbar { 
+    width: 0;
+    height: 0;
+    display: none;
+}
+.scrollable::-webkit-scrollbar-track { 
+    background-color: transparent;
+}
+#p-date{ 
+    margin-bottom: 5px;
+}
+#p-title{ 
+    margin-bottom: 15px;
+}
+#dateTime { 
+    text-align: center;
+}
+.todo-timestamp { 
+    color: #888;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+#p-title {
+    font-family: Satisfy, cursive;
+    font-size: 20px;
+    color: SandyBrown;
+    text-shadow: 0.02em 0.02em 0 Brown,;
+}
+
+.rating{
+    height: 10px;
+}
+.clr{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.clr-btn.active .clr-svg {
+    fill: red;
+}
+
+.clr-svg:hover { 
+    fill: rgb(255, 0, 0);
+    transform: scale(1.1)
+}

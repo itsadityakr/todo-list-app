@@ -46,7 +46,7 @@ function startSpeechRecognition() {
             } else {
                 alert("You must specify a task after Command: 'sunlight create new task'!");
             }
-        } else if (transcript.includes('turn off the mic')) {
+        } else if (transcript.includes('turn off mic')) {
             stopSpeechRecognition();
             isListening = false;
             micBtn.classList.remove('active');

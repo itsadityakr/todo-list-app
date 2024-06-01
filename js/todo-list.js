@@ -2,10 +2,8 @@
 const toDoInput = document.querySelector('.todo-input');
 const toDoBtn = document.querySelector('.todo-btn');
 const toDoList = document.querySelector('.todo-list');
-const standardTheme = document.querySelector('.standard-theme');
 const lightTheme = document.querySelector('.light-theme');
 const darkerTheme = document.querySelector('.darker-theme');
-const sunTheme = document.querySelector('.sun-theme');
 
 // Array for todos
 let todosList = [];
@@ -14,16 +12,12 @@ let todosList = [];
 toDoBtn.addEventListener('click', addToDo);
 toDoList.addEventListener('click', deleteCheck);
 document.addEventListener("DOMContentLoaded", getTodos);
-standardTheme.addEventListener('click', () => changeTheme('standard'));
 lightTheme.addEventListener('click', () => changeTheme('light'));
 darkerTheme.addEventListener('click', () => changeTheme('darker'));
-sunTheme.addEventListener('click', () => changeTheme('sunny'));
 
-// Check if one theme has been set previously and apply it (or std theme if not found):
+// Check if one theme has been set previously and apply it (or light theme if not found):
 let savedTheme = localStorage.getItem('savedTheme');
-savedTheme === null ?
-    changeTheme('standard')
-    : changeTheme(localStorage.getItem('savedTheme'));
+savedTheme === null ? changeTheme('light') : changeTheme(localStorage.getItem('savedTheme'));
 
 // Functions
 function addToDo(event) {
@@ -107,6 +101,7 @@ function createToDoElement(todoObject, index) {
     const formattedTimestamp = timestamp.toLocaleDateString('en-US', options);
     timestampPara.innerText = `Added: ${formattedTimestamp}`; // Displaying formatted timestamp
     timestampPara.classList.add('todo-timestamp');
+    timestampPara.style.fontSize = '16px'; // Set font size to 30px
     toDoDiv.appendChild(timestampPara);
 
     const checked = document.createElement('button');
@@ -121,8 +116,6 @@ function createToDoElement(todoObject, index) {
 
     return toDoDiv;
 }
-
-
 
 function savelocal() {
     localStorage.setItem('todos', JSON.stringify(todosList));
@@ -176,28 +169,7 @@ function changeTheme(color) {
             }
         });
     });
+    document.getElementById("clrBtn").onclick = function() {
+        window.location.href = '../pages/calender.html';
+    };
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const sunButton = document.querySelector('.terms-info');
-    const popup = document.getElementById('popup');
-    const activeButton = document.querySelector('.active-btn');
-
-    // Check if sun button is already active in localStorage
-    const isSunActive = localStorage.getItem('sunActive') === 'true';
-
-    if (isSunActive) {
-        popup.style.display = 'block';
-    }
-
-    sunButton.addEventListener('click', function() {
-        popup.style.display = 'block';
-        // Set sunActive to true in localStorage
-        localStorage.setItem('sunActive', 'true');
-    });
-
-    activeButton.addEventListener('click', function() {
-        popup.style.display = 'none';
-        // Remove sunActive from localStorage
-        localStorage.removeItem('sunActive');
-    });
-});
