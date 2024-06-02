@@ -1,23 +1,11 @@
 :root {
-  --primary-clr: #b38add;
+  --primary-clr: #00373d;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-}
-/* nice scroll bar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #f5f5f5;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-clr);
-  border-radius: 50px;
 }
 
 body {
@@ -26,8 +14,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 45px;
-  background-color: #e2e1dc;
+  margin-top: 40px;
+  background-image: linear-gradient(100deg, #00373d, #000a0e);
 }
 .container {
   position: relative;
@@ -37,8 +25,8 @@ body {
   padding: 5px;
   color: #fff;
   display: flex;
-  border-radius: 10px;
-  background-color: #373c4f;
+  border-radius: 30px;
+  background-image: linear-gradient(100deg, #001214, #001f29);
 }
 .left {
   width: 60%;
@@ -52,8 +40,8 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
-  color: #878895;
-  border-radius: 5px;
+  color: #ffffff;
+  border-radius: 30px;
   background-color: #fff;
 }
 /* set after behind the main element */
@@ -66,19 +54,20 @@ body {
   width: 18px;
   height: 97%;
   border-radius: 0 5px 5px 0;
-  background-color: #d3d4d6d7;
+  background-color: transparent;
   transform: translateY(-50%);
 }
 .calendar::before {
   height: 94%;
   left: calc(100% + 12px);
-  background-color: rgb(153, 153, 153);
+  background-color: transparent;
 }
 .calendar .month {
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
+  margin-top: 20px;
   justify-content: space-between;
   padding: 0 50px;
   font-size: 1.2rem;
@@ -248,15 +237,14 @@ body {
 
 .right .today-date {
   width: 100%;
-  height: 50px;
+  height: 80px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  padding-left: 70px;
-  margin-top: 50px;
+  padding-left: 20px;
   margin-bottom: 20px;
   text-transform: capitalize;
 }
@@ -267,7 +255,7 @@ body {
 .right .today-date .event-date {
   font-size: 1rem;
   font-weight: 400;
-  color: #878895;
+  color: #ffffff;
 }
 .events {
   width: 100%;
@@ -320,7 +308,7 @@ body {
 .events .event .event-time {
   font-size: 0.8rem;
   font-weight: 400;
-  color: #878895;
+  color: #ffffff;
   margin-left: 15px;
   pointer-events: none;
 }
@@ -348,22 +336,25 @@ body {
 .add-event {
   position: absolute;
   bottom: 30px;
-  right: 30px;
+  right: 25px;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  color: #878895;
-  border: 2px solid #878895;
-  opacity: 0.5;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  opacity: 1;
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
+  fill: rgb(255, 255, 255);
 }
 .add-event:hover {
   opacity: 1;
+  fill: red;
+  border: 2px solid #ff0000;
 }
 .add-event i {
   pointer-events: none;
@@ -376,7 +367,7 @@ body {
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #878895;
+  color: #ffffff;
 }
 .add-event-wrapper {
   position: absolute;
@@ -554,4 +545,33 @@ body {
 }
 .credits a:hover {
   text-decoration: underline;
+}
+.back-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 80px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  fill: rgb(255, 255, 255);
+}
+.back-btn:hover {
+  opacity: 1;
+  fill: red;
+  border: 2px solid #ff0000;
+}
+.back-btn i {
+  pointer-events: none;
+}
+.month, .weekdays{
+  color: var(--primary-clr);
 }

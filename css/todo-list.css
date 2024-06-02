@@ -67,6 +67,26 @@ body {
     margin-left: 10px;
     width: 40px;
 }
+.darker .back{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: rgb(247, 226, 223);
+    background-color: #01394c;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+}
+.light .back{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: #ffffff;
+    background-color: #57565696;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+}
 
 #header, #form, #datetime {
     margin: 0 1rem;
@@ -411,4 +431,25 @@ form button {
     form > button.light-button {
         box-shadow: 0 0 5px lightgray;
     }
+}
+
+.darker .back{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: rgb(247, 226, 223);
+    background-color: #01394c;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
+}
+.light .back{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: #ffffff;
+    background-color: #57565696;
+    border-radius: 100px;
+    margin-left: 10px;
+    width: 40px;
 }

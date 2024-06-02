@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/selection.css">
-    <link rel="shortcut icon" href="./assets/to-do-list.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/to-do-list.ico" type="image/x-icon">
     <title>AAM | Type Selection</title>
 </head>
 
@@ -15,53 +15,37 @@
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form>
-                <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <h1 style="text-align: center;">Calender Manager</h1>
+                <p>Users can input tasks, each accompanied by a timestamp denoting its addition. Tasks can be marked as completed or removed entirely. Additionally, the app offers a toggle between light and darker themes, with the selected theme persisting locally. This lightweight solution ensures task management with a personalized touch, facilitating efficient organization of tasks while offering a visually adaptable interface.</p>
+                <div id="clndr-btn">Open Calender Manager</div>
             </form>
         </div>
         <div class="form-container sign-in">
             <form>
-                <h1>Sign In</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <h1 style="text-align: center;">Advanced Activity Manager</h1>
+                
+                <p>Users can input tasks, each accompanied by a timestamp denoting its addition. Tasks can be marked as completed or removed entirely. Additionally, the app offers a toggle between light and darker themes, with the selected theme persisting locally. This lightweight solution ensures task management with a personalized touch, facilitating efficient organization of tasks while offering a visually adaptable interface.</p>
+                <div style="text-align: center"; id="aam-btn">Open Advanced Activity Manager</div>
             </form>
         </div>
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button class="hidden" id="login">Sign In</button>
+                    <h1>Advanced Activity Manager</h1>
+                    <p>Timestamped task management with completion tracking, local theme options, and visual adaptability.</p>
+                    <button class="hidden" id="login">Switch</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
+                    <h1>Calender Manager</h1>
+                    <p>Seamlessly manage tasks with timestamps, completion status, and theme customization for an efficient and personalized experience.</p>
+                    <button class="hidden" id="register">Switch</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="../js/selection.js"></script>
+    <script src="../js/disabler.js"></script>
 </body>
 
 </html>

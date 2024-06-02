@@ -455,3 +455,6 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+document.getElementById("backBtn").addEventListener("click", function() {
+  window.location.href = "../pages/selection.html";
+});
