@@ -169,10 +169,4 @@ function changeTheme(color) {
             }
         });
     });
-    document.getElementById("clrBtn").onclick = function() {
-        window.location.href = '../pages/rating.html';
-    };
 }
-document.getElementById("backBtn").onclick = function() {
-    window.location.href = '../pages/selection.html';
-};

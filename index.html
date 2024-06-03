@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>AAM | User</title>
-        <link rel="stylesheet" href="./css/signin.css">
-        <link rel="shortcut icon" href="./assets/to-do-list.ico" type="image/x-icon">
-    </head>
-    <body>
-        <div class="wrapper">
-            <form id="user-form">
-                <h2>User Details</h2>
-                <div class="input-field">
-                    <input type="text" id="name" required autofocus>
-                    <label>Enter your Name</label>
-                </div>
-                <a id="a-btn" href="./pages/terms.html" class="disabled">I agree that my name is correct</a>
-                <div class="register">
-                    <p>Want to know more? <a target="_blank" href="https://github.com/itsadityakr">Visit Github</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-        <script src="./js/signin.js"></script>
-		<script src="./js/disabler.js"></script>
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Advanced Music Player | User</title>
+		<link rel="stylesheet" href="./css/signin.css">
+		<link rel="shortcut icon" href="../assets/to-do-list.ico" type="image/x-icon">
+	</head>
+	<body>
+		<div class="wrapper">
+			<form id="user-form">
+				<h2>User Details</h2>
+				<div class="input-field">
+					<input type="text" id="name" required autofocus>
+					<label>Enter your Name</label>
+				</div>
+				<a id="a-btn" href="#">I Agree that my name is correct</a>
+				<div class="register">
+					<p>Want to know more? <a target="_blank" href="https://github.com/itsadityakr">Visit Github</a>
+					</p>
+				</div>
+			</form>
+		</div>
+		<script>
+			document.getElementById('name').addEventListener('keypress', function(event) {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					var name = document.getElementById('name').value;
+					if (name === '') {
+						alert('Please enter your name!');
+					} else {
+						localStorage.setItem('userName', name);
+						document.getElementById('a-btn').click();
+					}
+				}
+			});
+
+			document.getElementById('a-btn').addEventListener('click', function(event) {
+				event.preventDefault();
+				var name = document.getElementById('name').value;
+				if (name === '') {
+					alert('Please enter your name!');
+				} else {
+					localStorage.setItem('userName', name);
+					window.location.href = "./pages/terms.html";
+				}
+			});
+		</script>
+	</body>
 </html>

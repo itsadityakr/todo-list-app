@@ -160,5 +160,5 @@ body{
   background: #ffffff;
   border-color: var(--primary-clr);
   color: black;
-  transform: scale(1.2);
+  transform: scale(0.8);
 }

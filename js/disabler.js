@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
-        alert("Right-click is disabled on this page.");
     });
 });
 
@@ -16,7 +15,6 @@ document.body.style.webkitUserDrag = 'none'; // Safari
 // Prevent copying
 document.addEventListener('copy', function(e) {
     e.preventDefault();
-    alert('Copying is not allowed on this webpage.');
 });
 
 // Prevent dragging

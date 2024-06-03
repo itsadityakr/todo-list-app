@@ -151,7 +151,7 @@ body {
     letter-spacing: 0.20rem;
     margin-top: 10px;
     margin-bottom: 20px;
-    max-width: 260px;
+    width: auto;
   }
   
   /* Animation */
@@ -453,3 +453,26 @@ form button {
     margin-left: 10px;
     width: 40px;
 }
+
+.typewriter p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .1em solid #ffffff; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    animation: 
+      typing 3s steps(30, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #ffffff; }
+  }
