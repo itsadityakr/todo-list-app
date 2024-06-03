@@ -1,7 +1,8 @@
 # Advanced Activity Manager
 
 ## Website Link
-https://itsadityakr.github.io/Todo-List/
+[https://itsadityakr.github.io/Todo-List/](https://itsadityakr.github.io/Todo-List/){:target="_blank"}
+
 
 ## Overview
 This repository contains the source code and documentation for the Advanced Activity Manager (AAM) application. AAM provides users with an interactive to-do list and calendar, along with voice command functionalities.
