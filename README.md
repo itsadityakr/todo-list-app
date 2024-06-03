@@ -1,7 +1,7 @@
 # Advanced Activity Manager
 
 ## Website Link
-[https://itsadityakr.github.io/Todo-List](https://itsadityakr.github.io/Todo-List){:target="_blank"}
+https://itsadityakr.github.io/Todo-List/
 
 
 ## Overview
