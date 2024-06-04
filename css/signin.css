@@ -32,8 +32,8 @@ body::before {
     border-radius: 8px;
     padding: 30px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
+    border: 2px solid rgb(0, 0, 0);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(8px);
 }
 
@@ -45,12 +45,12 @@ form {
 h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #fff;
+    color: #000;
 }
 
 .input-field {
     position: relative;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #000000;
     margin: 15px 0;
 }
 
@@ -59,7 +59,7 @@ h2 {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    color: #fff;
+    color: #000;
     font-size: 16px;
     pointer-events: none;
     transition: 0.15s ease;
@@ -72,7 +72,7 @@ h2 {
     border: none;
     outline: none;
     font-size: 16px;
-    color: #fff;
+    color: #000;
 }
 
 .input-field input:focus ~ label,
@@ -87,11 +87,11 @@ h2 {
     align-items: center;
     justify-content: space-between;
     margin: 25px 0 35px 0;
-    color: #fff;
+    color: #000;
 }
 
 #remember {
-    accent-color: #fff;
+    accent-color: #000;
 }
 
 .forget label {
@@ -104,7 +104,8 @@ h2 {
 }
 
 .wrapper a {
-    color: #efefef;
+    color: #000000;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -128,15 +129,15 @@ h2 {
 
 #a-btn:hover {
     margin-top: 30px;
-    color: #fff;
-    border-color: #fff;
+    color: #000;
+    border-color: #000;
     background: rgba(255, 255, 255, 0.15);
 }
 
 .register {
     text-align: center;
     margin-top: 30px;
-    color: #fff;
+    color: #000;
 }
 
 .disabled {
