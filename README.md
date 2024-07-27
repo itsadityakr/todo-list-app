@@ -1,18 +1,17 @@
-# Advanced Activity Manager
+# Todo List
 
 ## Website Link
 https://itsadityakr.github.io/Todo-List/
 
-
 ## Overview
-This repository contains the source code and documentation for the Advanced Activity Manager (AAM) application. AAM provides users with an interactive to-do list and calendar, along with voice command functionalities.
+This repository contains the source code and documentation for the To-Do List application. The To-Do List provides users with an interactive to-do list and calendar, along with voice command functionalities.
 
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
   - [Terms of Use](#terms-of-use)
-  - [Advanced Activity Manager](#advanced-activity-manager)
+  - [To-Do List](#to-do-list)
   - [Calendar Activity Manager](#calendar-activity-manager)
   - [Voice Functions](#voice-functions)
   - [Speech Alert](#speech-alert)
@@ -22,15 +21,17 @@ This repository contains the source code and documentation for the Advanced Acti
 
 ## Installation
 1. Clone the repository:
+    ```bash
     git clone https://github.com/itsadityakr/Todo-List.git
-   
-3. Navigate to the project directory:
+    ```
+2. Navigate to the project directory:
+    ```bash
     cd Todo-List
-
-4. Open the `index.html` file in your preferred web browser to view the Terms and Functions page.
+    ```
+3. Open the `index.html` file in your preferred web browser to view the Terms and Functions page.
 
 ## Usage
-To use the Advanced Activity Manager application, simply open the provided HTML file in a web browser. The application includes interactive features such as a to-do list, calendar, and voice command functionality.
+To use the To-Do List application, simply open the provided HTML file in a web browser. The application includes interactive features such as a to-do list, calendar, and voice command functionality.
 
 ## Features
 
@@ -48,7 +49,7 @@ The Terms of Use govern access to and use of the services, including the website
 - **Termination**: Access to the Services can be terminated at any time.
 - **Governing Law**: The Terms are governed by the laws of the specified jurisdiction.
 
-### Advanced Activity Manager
+### To-Do List
 A to-do list manager with features such as adding, deleting, and marking tasks as completed. Supports theme changes and local storage for user preferences.
 
 **Functions Used:**
@@ -92,3 +93,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
+- by Aditya Kumar
+- Do not forget to give credits
