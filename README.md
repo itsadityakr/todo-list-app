@@ -3,6 +3,9 @@
 ## Website Link
 https://itsadityakr.github.io/Todo-List/
 
+## Preview
+<img src="https://raw.githubusercontent.com/itsadityakr/todo-list-app/refs/heads/main/assets/gif.gif" alt="" width="700">
+
 
 ## Overview
 This repository contains the source code and documentation for the To-Do List application. The To-Do List provides users with an interactive to-do list and calendar, along with voice command functionalities.
